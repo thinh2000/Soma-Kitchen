@@ -1,0 +1,25 @@
+{
+  "name": "soma_kitchen",
+  "version": "1.0.0",
+  "description": "Soma Kitchen project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ducnguyen2000/Soma-Kitchen.git"
+  },
+  "keywords": [
+    "kitchen",
+    "share",
+    "ingredients",
+    "food"
+  ],
+  "author": "ducnguyen2000",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ducnguyen2000/Soma-Kitchen/issues"
+  },
+  "homepage": "https://github.com/ducnguyen2000/Soma-Kitchen#readme"
+}
