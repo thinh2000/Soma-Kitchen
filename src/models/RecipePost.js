@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+
+
 const RecipePostSchema = new Schema({
-    postId: String,
     title: String,
     body: String,
     ingredients: String,

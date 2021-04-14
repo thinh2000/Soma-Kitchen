@@ -2,8 +2,14 @@ const RecipePost = require('../../../models/RecipePost');
 const path = require('path');
 
 module.exports = (req, res) => {
-    RecipePost.create({
-        ...req.body,
+    let image = req.files.image;
+    image.mv(path.resolve(__dirname, '../../../', '/upload', image.name),
+    (err) => {
+        RecipePost.create({
+            ...req.body,
+            image: '/upload/' + image.name
+        }, (err) => {
+            res.redirect('/');
+        })
     })
-    res.status(201).send("ok");
 }
