@@ -7,26 +7,34 @@ const expressSession = require('express-session');
 const port = 9000;
 
 /* ---------------------------------------------------- 
-                Connect to database
+            START: Connect to database
 ---------------------------------------------------- */
+
 mongoose.connect('mongodb://localhost/soma_kitchen', { useNewUrlParser: true, useUnifiedTopology: true });
+
+/* ---------------------------------------------------- 
+            END: Connect to database
+---------------------------------------------------- */
 
 
 /* ---------------------------------------------------- 
-                    Middleware
+                START: Middleware
 ---------------------------------------------------- */
+
 app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.raw());
 app.use(fileUpload());
 
+/* ---------------------------------------------------- 
+                END: Middleware
+---------------------------------------------------- */
 
 
 
 /* ---------------------------------------------------- 
-            Declare folder of controller
+        START: Declare folder of controller
 ---------------------------------------------------- */
-
 
 // Recipe
 const getAllRecipePostsController = require('./app/controllers/Recipe/getAllRecipePostsController');
@@ -34,13 +42,17 @@ const getRecipePostController = require('./app/controllers/Recipe/getRecipePostC
 const postRecipePostController = require('./app/controllers/Recipe/postRecipePostController');
 
 // Cooking Skills
-const getAllCookingPostsController = require('./app/controllers/Recipe/getAllRecipePostsController');
+const getAllCookingPostsController = require('./app/controllers/Cooking/getAllCookingPostsController');
 const getCookingPostController = require('./app/controllers/Cooking/getCookingPostController');
 const postCookingPostController = require('./app/controllers/Cooking/postCookingPostController');
 
+/* ---------------------------------------------------- 
+        END: Declare folder of controller
+---------------------------------------------------- */
+
 
 /* ---------------------------------------------------- 
-                    Request handler
+                START: Request handler
 ---------------------------------------------------- */
 
 // Recipes Post
@@ -54,8 +66,17 @@ app.get('/cookings', getAllCookingPostsController);
 app.get('/cookings/:_id', getCookingPostController);
 app.post('/cookings', postCookingPostController);
 
+/* ---------------------------------------------------- 
+                END: Request handler
+---------------------------------------------------- */
+
 
 /* ---------------------------------------------------- 
-                    Port listener
+                START: Port listener
 ---------------------------------------------------- */
-app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))
+
+app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`));
+
+/* ---------------------------------------------------- 
+                END: Port listener
+---------------------------------------------------- */
