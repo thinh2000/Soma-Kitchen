@@ -30,8 +30,14 @@ app.use(fileUpload());
 
 // Recipe
 const getAllRecipePostsController = require('./app/controllers/Recipe/getAllRecipePostsController');
-const getRecipePostController = require('./app/controllers/Recipe/getRecipePostController')
+const getRecipePostController = require('./app/controllers/Recipe/getRecipePostController');
 const postRecipePostController = require('./app/controllers/Recipe/postRecipePostController');
+
+// Cooking Skills
+const getAllCookingPostsController = require('./app/controllers/Recipe/getAllRecipePostsController');
+const getCookingPostController = require('./app/controllers/Cooking/getCookingPostController');
+const postCookingPostController = require('./app/controllers/Cooking/postCookingPostController');
+
 
 /* ---------------------------------------------------- 
                     Request handler
@@ -42,4 +48,14 @@ app.get('/recipes', getAllRecipePostsController);
 app.get('/recipes/:_id', getRecipePostController);
 app.post('/recipes', postRecipePostController);
 
+
+// Cooking Post
+app.get('/cookings', getAllCookingPostsController);
+app.get('/cookings/:_id', getCookingPostController);
+app.post('/cookings', postCookingPostController);
+
+
+/* ---------------------------------------------------- 
+                    Port listener
+---------------------------------------------------- */
 app.listen(port, () => console.log(`Example app listening at http://localhost:${port}`))

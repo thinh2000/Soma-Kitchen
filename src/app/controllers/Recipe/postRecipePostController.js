@@ -3,13 +3,13 @@ const path = require('path');
 
 module.exports = (req, res) => {
     let image = req.files.image;
-    image.mv(path.resolve(__dirname, '../../../', '/upload', image.name),
+    image.mv(path.resolve(__dirname, '../../../', '/upload/images', image.name),
     (err) => {
         RecipePost.create({
             ...req.body,
-            image: '/upload/' + image.name
+            image: '/upload/images' + image.name
         }, (err) => {
-            res.redirect('/');
+            res.send(err);
         })
     })
 }
