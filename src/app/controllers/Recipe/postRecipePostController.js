@@ -7,7 +7,7 @@ module.exports = (req, res) => {
     (err) => {
         RecipePost.create({
             ...req.body,
-            image: '/upload/images' + image.name
+            image: '/upload/images/' + image.name
         }, (err) => {
             res.send(err);
         })
