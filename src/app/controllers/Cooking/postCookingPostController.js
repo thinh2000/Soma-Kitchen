@@ -7,7 +7,7 @@ module.exports = (req, res) => {
     (err) => {
         CookingPost.create({
             ...req.body,
-            video: '/upload/videos' + video.name
+            video: '/upload/videos/' + video.name
         }, (err) => {
             res.send(err);
         })
