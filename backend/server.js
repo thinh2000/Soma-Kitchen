@@ -25,9 +25,23 @@ app.use(bodyParser.json({ type: 'application/json' }));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.raw());
 app.use(fileUpload());
+app.use(expressSession({
+        secret: 'keyboard cat'
+}))
 
 /* ---------------------------------------------------- 
                 END: Middleware
+---------------------------------------------------- */
+
+
+/* ---------------------------------------------------- 
+        START: Declare folder of Custom Middleware
+---------------------------------------------------- */
+const authMiddleware = require('./middlewares/authMiddleware');
+const redirectIfAuthenticatedMiddleware = require('./middlewares/redirectIfAuthenticatedMiddleware');
+
+/* ---------------------------------------------------- 
+        END: Declare folder of Custom Middleware
 ---------------------------------------------------- */
 
 
@@ -50,6 +64,11 @@ const postCookingPostController = require('./app/controllers/Cooking/postCooking
 const updateCookingPostController = require('./app/controllers/Cooking/updateCookingPostController');
 const deleteCookingPostController = require('./app/controllers/Cooking/deleteCookingPostController');
 
+// User
+const loginController = require('./app/controllers/User/loginController');
+const logoutController = require('./app/controllers/User/logoutController');
+const registerController = require('./app/controllers/User/registerController');
+
 /* ---------------------------------------------------- 
         END: Declare folder of controller
 ---------------------------------------------------- */
@@ -62,17 +81,27 @@ const deleteCookingPostController = require('./app/controllers/Cooking/deleteCoo
 // Recipes Post
 app.get('/recipes', getAllRecipePostsController);
 app.get('/recipes/:_id', getRecipePostController);
-app.post('/recipes', postRecipePostController);
-app.put('/recipes/:_id', updateRecipePostController);
+app.post('/recipes', authMiddleware, postRecipePostController);
+app.put('/recipes/:_id', authMiddleware, updateRecipePostController);
 app.delete('/recipes/:_id', deleteRecipePostController);
 
 
 // Cooking Post
 app.get('/cookings', getAllCookingPostsController);
 app.get('/cookings/:_id', getCookingPostController);
-app.post('/cookings', postCookingPostController);
-app.put('/cookings/:_id', updateCookingPostController);
+app.post('/cookings', authMiddleware, postCookingPostController);
+app.put('/cookings/:_id', authMiddleware, updateCookingPostController);
 app.delete('/cookings/:_id', deleteCookingPostController);
+
+// Register Request
+app.post('/register', registerController);
+
+// Login Request
+app.post('/login', redirectIfAuthenticatedMiddleware, loginController);
+
+// Logout Request
+app.get('/logout', logoutController);
+
 
 /* ---------------------------------------------------- 
                 END: Request handler

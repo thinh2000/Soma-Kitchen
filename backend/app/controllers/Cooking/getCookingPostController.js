@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 module.exports = (req, res) => {
     if (mongoose.Types.ObjectId.isValid(req.params._id)) {
         CookingPost.findById(req.params._id)
+        .populate('postedBy')
         .then((doc) => {
             if(doc) {
                 console.log(doc);
@@ -16,5 +17,6 @@ module.exports = (req, res) => {
             res.send(err);
             console.log(`Error in find 1 cooking: ${err}`);
         })
+        
     }
 }
