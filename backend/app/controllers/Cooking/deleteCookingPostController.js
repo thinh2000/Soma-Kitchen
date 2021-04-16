@@ -8,4 +8,5 @@ module.exports = (req, res) => {
             res.json(docs);
         }
     })
+    .populate('postedBy')
 }

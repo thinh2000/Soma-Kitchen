@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 module.exports = (req, res) => {
     if (mongoose.Types.ObjectId.isValid(req.params._id)) {
         RecipePost.findById(req.params._id)
+        .populate('postedBy')
         .then((doc) => {
             if(doc) {
                 console.log(doc);

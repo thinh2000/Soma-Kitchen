@@ -14,7 +14,9 @@ module.exports = (req, res) => {
                     video: '/upload/videos/' + video.name
                 },
                 { new: true }
-            ).then((doc) => {
+            )
+            .populate('postedBy')
+            .then((doc) => {
                 if(doc) {
                     res.json(doc)
                 } else {
