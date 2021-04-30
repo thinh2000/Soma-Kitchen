@@ -2,9 +2,9 @@
   "name": "soma_kitchen",
   "version": "1.0.0",
   "description": "Soma Kitchen project",
-  "main": "backend/server.js",
+  "main": "server.js",
   "scripts": {
-    "start": "nodemon backend/server.js",
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
