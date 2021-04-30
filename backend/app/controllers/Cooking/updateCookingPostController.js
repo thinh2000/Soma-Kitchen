@@ -15,7 +15,7 @@ module.exports = (req, res) => {
                 },
                 { new: true }
             )
-            .populate('postedBy')
+            // .populate('postedBy')
             .then((doc) => {
                 if(doc) {
                     res.json(doc)

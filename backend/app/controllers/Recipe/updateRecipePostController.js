@@ -25,7 +25,7 @@ module.exports = (req, res) => {
                 res.send(err);
                 console.log(err);
             })
-            .populate('postedBy')
+            // .populate('postedBy')
         }
     }) 
 }

@@ -57,6 +57,9 @@ const postRecipePostController = require('./app/controllers/Recipe/postRecipePos
 const updateRecipePostController = require('./app/controllers/Recipe/updateRecipePostController');
 const deleteRecipePostController = require('./app/controllers/Recipe/deleteRecipePostController');
 
+// Comment Recipe
+const commentController = require('./app/controllers/Recipe/commentController');
+
 // Cooking Skills
 const getAllCookingPostsController = require('./app/controllers/Cooking/getAllCookingPostsController');
 const getCookingPostController = require('./app/controllers/Cooking/getCookingPostController');
@@ -66,8 +69,10 @@ const deleteCookingPostController = require('./app/controllers/Cooking/deleteCoo
 
 // User
 const loginController = require('./app/controllers/User/loginController');
+const loginPageController = require('./app/controllers/User/loginPageController');
 const logoutController = require('./app/controllers/User/logoutController');
 const registerController = require('./app/controllers/User/registerController');
+const registerPageController = require('./app/controllers/User/registerPageController');
 
 /* ---------------------------------------------------- 
         END: Declare folder of controller
@@ -81,23 +86,32 @@ const registerController = require('./app/controllers/User/registerController');
 // Recipes Post
 app.get('/recipes', getAllRecipePostsController);
 app.get('/recipes/:_id', getRecipePostController);
-app.post('/recipes', authMiddleware, postRecipePostController);
-app.put('/recipes/:_id', authMiddleware, updateRecipePostController);
+// app.post('/recipes', authMiddleware, postRecipePostController);
+// app.put('/recipes/:_id', authMiddleware, updateRecipePostController);
+app.post('/recipes', postRecipePostController);
+app.put('/recipes/:_id', updateRecipePostController);
 app.delete('/recipes/:_id', deleteRecipePostController);
+
+// Comment Recipes Post
+app.post('/comment', authMiddleware, commentController);
 
 
 // Cooking Post
 app.get('/cookings', getAllCookingPostsController);
 app.get('/cookings/:_id', getCookingPostController);
-app.post('/cookings', authMiddleware, postCookingPostController);
-app.put('/cookings/:_id', authMiddleware, updateCookingPostController);
+// app.post('/cookings', authMiddleware, postCookingPostController);
+// app.put('/cookings/:_id', authMiddleware, updateCookingPostController);
+app.post('/cookings', postCookingPostController);
+app.put('/cookings/:_id', updateCookingPostController);
 app.delete('/cookings/:_id', deleteCookingPostController);
 
 // Register Request
-app.post('/register', registerController);
+app.get('/register', registerPageController)
+app.post('/auth/register', registerController);
 
 // Login Request
-app.post('/login', redirectIfAuthenticatedMiddleware, loginController);
+app.get('/login', loginPageController);
+app.post('/auth/login', loginController);
 
 // Logout Request
 app.get('/logout', logoutController);
