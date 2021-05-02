@@ -11,14 +11,14 @@ module.exports = (req, res) => {
                 { _id: req.params._id },
                 { 
                     ...req.body,
-                    video: '/upload/videos/' + video.name
+                    // video: '/upload/videos/' + video.name
                 },
                 { new: true }
             )
             // .populate('postedBy')
             .then((doc) => {
                 if(doc) {
-                    res.json(doc)
+                    res.send(doc)
                 } else {
                     res.send("No such cooking post exists");
                     console.log("No such cooking post exists");

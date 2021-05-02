@@ -5,7 +5,7 @@ module.exports = (req, res) => {
         if(err !== null){
             console.log(`Error in delete 1 cooking: ${err}`);
         } else {
-            res.json(docs);
+            res.send(docs);
         }
     })
     .populate('postedBy')
