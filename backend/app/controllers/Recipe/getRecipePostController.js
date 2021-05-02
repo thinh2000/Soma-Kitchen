@@ -4,11 +4,11 @@ const mongoose = require('mongoose');
 module.exports = (req, res) => {
     if (mongoose.Types.ObjectId.isValid(req.params._id)) {
         RecipePost.findById(req.params._id)
-        .populate('postedBy')
+        // .populate('postedBy')
         .then((doc) => {
             if(doc) {
                 console.log(doc);
-                res.json(doc);
+                res.send(doc);
             } else {
                 console.log(`No recipe post exist for this id: ${req.params._id}`);
                 res.send(`No recipe post exist for this id: ${req.params._id}`)

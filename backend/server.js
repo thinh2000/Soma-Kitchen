@@ -6,6 +6,7 @@ const fileUpload = require('express-fileupload');
 const expressSession = require('express-session');
 const port = 9000;
 
+
 /* ---------------------------------------------------- 
             START: Connect to database
 ---------------------------------------------------- */

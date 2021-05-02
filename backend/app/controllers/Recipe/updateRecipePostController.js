@@ -11,7 +11,7 @@ module.exports = (req, res) => {
                 { _id: req.params._id },
                 { 
                     ...req.body,
-                    image: '/upload/images/' + image.name
+                    // image: '/upload/images/' + image.name
                 },
                 { new: true }
             ).then((doc) => {
