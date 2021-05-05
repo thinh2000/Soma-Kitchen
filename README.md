@@ -2,9 +2,9 @@
 Run backend and frontend: 
 
 step 1: run backend
--cd backend
--nodemon server.js
+cd backend /n
+nodemon server.js
 
 step 2: run frontend
--cd frontend
--npm start
+cd frontend /n
+-pm start
